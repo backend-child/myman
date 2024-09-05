@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+</head>
+<body>
+
+    <form action="" method="GET">
+        <input type="search" name="movie_name">
+        <button type="submit">Search </button>
+    </form>
+    
+    {% for mov in movie_object %}
+
+     {{mov.name}}
+     <br>
+
+    {% endfor %}
+
+    <!-- to check if movie object has a previous object at the back of it the previous one-->
+
+    {% if movie_object.has_previous %}
+     <a href="?page=1">First</a>
+    <a href="?page={{ movie_object.previous_page_number}}">Previous</a>
+
+    {% endif %}
+
+    <!-- to tell us the current page we are currntly on  -->
+
+    Page: {{ movie_object.number }} of {{ movie_object.paginator.num_pages }}
+
+    <!-- to check if an object has an item close to it  -->
+
+    {% if movie_object.has_next %}
+     <a href="?page={{ movie_object.next_page_number}}">Next</a>
+     <a href="?page={{ movie_object.paginator.num_pages }}">Last</a>
+    {% endif %}
+</body>
+</html>  
